@@ -38,3 +38,16 @@ var testeAlteração = "Um texto"
 testeAlteração = 2
 
 console.log("testeAlteracao: ", testeAlteração)
+
+var arrayNumero = [1,2,3,4,5]
+var arrayCarros = ["Gol", "Uno", "Civic"]
+var arrayDinamico = [1, "Nome", true, {"nome": "Teste"}]
+
+var pessoa = {
+"nome": "Isabela",
+"idade": 18,
+"nacionalidade": "Brasileiro"
+
+}
+
+
