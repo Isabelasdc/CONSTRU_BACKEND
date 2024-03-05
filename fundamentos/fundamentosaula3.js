@@ -105,3 +105,45 @@ let telefone = null // ausência de valor
 //tipo underfined = NaN
 let teste = 10 / "ola"
 console.log(teste)
+
+//tratamento de daos (String)
+let texto = "Isabela Sousa"
+//.length // quantidade de caracteres do texto
+console.log(texto.length)
+//texto em caixa alta
+console.log(texto.toUpperCase())
+//texto em caixa baixa 
+console.log(texto.toLowerCase())
+//replace substituição
+let valor = "10.50"
+console.log(valor)
+
+valor = valor.replace("," , ".")
+console.log(valor)
+
+// tratamento de dados (number)
+let numero = 10.777777777777777
+//fixar numero de casas do numero flutuante
+
+console.log(numero.toFixed(2))
+
+//transformando flot para inteiro
+console.log(Number.parseInt(numero))
+
+let numeroIntero = 10
+
+//transformando inteiro para float
+console.log(Number.parseFloat(numeroIntero).toFixed(2))
+let valorEmDolar = 10.54
+
+console.log(valorEmDolar.toLocaleString('pt-BR', {style:'currency' , currency: 'BRL'}))
+console.log(valorEmDolar.toLocaleString('pt-BR', {style:'currency' , currency: 'USD'}))
+
+let idadeUser =  "20"
+console.log(Number(idadeUser))
+
+console.log(Math.PI)
+
+//operadores relacionais 
+
+
