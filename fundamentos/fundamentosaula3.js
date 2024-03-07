@@ -146,4 +146,15 @@ console.log(Math.PI)
 
 //operadores relacionais 
 
+//condições
+// if else
 
+//if(condicao) {
+ //   acao
+//}
+//if (condicao) {
+//    acao
+//} else {
+ //   acao
+//}
+ 
