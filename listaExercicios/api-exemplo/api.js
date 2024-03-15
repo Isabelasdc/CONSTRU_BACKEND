@@ -9,3 +9,4 @@ server.createServer((req, res) => {
     res.write("Bem vindo ao meu backend! Contador de requisições: " + contador)
     res.end()
 }).listen(3000)
+
