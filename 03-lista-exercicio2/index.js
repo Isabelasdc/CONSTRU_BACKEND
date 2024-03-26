@@ -41,6 +41,55 @@ app.post('/exercicio1', (req, res) => {
     res.send(`Estoque Médio: ${estoqueMedio}`)
 })
 
+
+// atividade 7 - lista 2
+app.post('/exercicio7' , (req, res) => {
+
+    const corpo = req.body
+    let listaprodutos = []
+    
+                                      
+    corpo.forEach(produto => {
+        listaprodutos.push(produto)
+        
+    });
+
+    let soma = 0
+    listaprodutos.forEach(produto => {
+        soma = soma + produto.preco
+    })
+
+    const media = soma / listaprodutos.length
+
+    // calcular o maiorPreco
+    let maiorPreco = 0
+    // logica
+
+    listaprodutos.forEach(produto =>{
+        if (produto.preco > maiorPreco){
+            maiorPreco = produto.preco
+        }
+    })
+
+    // Math.max(listaprodutos.map(produto => produto.preco))
+
+    const resultado = {
+        precoMedia: media.toFixed(2),
+        maiorPreco: maiorPreco
+    }
+    res.json(resultado)
+  
+})
+
+
+
+
+
+
+
+
+
+
 app.listen(3000, () => {
     console.log("Aplicação iniciada e, http://localhost3000")
 })
