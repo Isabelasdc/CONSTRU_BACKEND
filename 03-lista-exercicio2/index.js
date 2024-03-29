@@ -71,7 +71,8 @@ app.post('/exercicio7' , (req, res) => {
         }
     })
 
-    // Math.max(listaprodutos.map(produto => produto.preco))
+    // 
+    .max(listaprodutos.map(produto => produto.preco))
 
     const resultado = {
         precoMedia: media.toFixed(2),
