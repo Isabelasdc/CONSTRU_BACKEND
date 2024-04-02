@@ -1,10 +1,15 @@
 // configuração
 const express = require('express')
-const app = express()
-
+const cors = require('cors')
 const tutorial = require('./routes/tutorial')
 const subrota = require('./routes/subrota')
 const contatos = require('./routes/contatos')
+
+//  configuração
+const app = express()
+
+// configuração de cors 
+app.use(cors({origin: '*'}));
 
 // middlewares
 // middleware que transforma o corpo da requisição em objeto json

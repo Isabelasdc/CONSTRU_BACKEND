@@ -5,7 +5,7 @@ const router = express.Router()
 
 // dados mockados
 // criar uma lista
-let listaContatos = ["João", "Pedro", "Daniel"]
+let listaContatos = []
 
 // CRUD
 // READ - Buscar todos os contatos
