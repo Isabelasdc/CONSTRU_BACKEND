@@ -114,3 +114,15 @@ router.delete('/produtos/:id' , validarProduto, (req, res) => {
 
 
 module.exports = router
+
+
+
+
+
+
+
+
+
+
+
+
