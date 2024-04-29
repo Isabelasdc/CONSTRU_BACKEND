@@ -6,7 +6,7 @@ const router = express.Router()
 let listaPessoas  =  [
     {
         id : 1,
-        nome : "João" ,
+        nome : "Pedro" ,
         idade : 20 ,
         email : "joão@email.com" ,
         telefone : 61900010002
