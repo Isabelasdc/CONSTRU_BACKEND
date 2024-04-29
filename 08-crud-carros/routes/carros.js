@@ -42,19 +42,20 @@ router.get('/carros/:id', (req, res) => {
 
 //  cadastrar carro
 router.post('/carros', (req, res) => {
-    const corpo = req.body
+    const dados = req.body
+    console.log(dados)
 
     if(!corpo.marca || !corpo.modelo || !corpo.cor || !corpo.valor){
         return res.status(400).json({mensagem: "Campos marca, modelo, cor e valor são obrigatórios!"})
     }
 
     const carro = {
-        id: Math.round(Math.random() * 1000),
-        marca: corpo.marca,
-        modelo: corpo.modelo,
+      id: Math.round(Math.random() * 1000),
+       marca: corpo.marca,
+       modelo: corpo.modelo,
         cor: corpo.cor,
-        valor: corpo.valor
-    }
+       valor: corpo.valor
+     }
 
         listaCarros.push(carro)
         return res.status(201).json({mensagem: "Carro criado com sucesso", carro
