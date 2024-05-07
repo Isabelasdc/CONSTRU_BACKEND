@@ -50,9 +50,6 @@ app.delete('/tarefas/:id', async (req, res) => {
 
 
 
-
-
-
 app.post('/tarefas', async (req, res) => {
     const corpo = req.body
     const tarefa = new Tarefa({nome: req.body.nome})
