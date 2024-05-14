@@ -32,24 +32,25 @@ async function getAll(req, res) {
  }
 
     async function update(req, res) {
-    try {
     const cargoAtualizado = await Cargo.findByIdAndUpdate(req.params.id, req.body)
+   if(cargoAtualizado) {
     res.json(cargoAtualizado)
-
-    }catch (error){
-        console.error("Erro ao criar cargo: ", error)
-        res.status(400).json({
-            mensagem: "Erro ao atualizar cargo",
-            erro: error.mensagem
-    })
- }
+    } else {
+        res.status(404).json({mensagem: "Cargo não encontrado"})
+    }
 
 }
 
 async function remove(req, res) {
-    await Cargo.findByIdAndDelete(req.param.id)
-    res.json({mensagem: "Cargo excluido com sucesso !"})
-    
+    const cargoExcluido = await Cargo.findByIdAndDelete(req.params.id)
+    if (cargoExcluido) {
+        res.json({
+            mensagem: "Cargo excluido com sucesso!",
+            cargoExcluido
+        })
+    } else {
+        res.status(404).json({ mensagem: "Cargo não encontrato!" })
+    }
 }
 
 
