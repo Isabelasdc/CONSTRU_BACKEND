@@ -14,8 +14,8 @@ const {cargoValidador} = require('../validators/CargoValidator')
 router.post('/cargos',cargoValidador,CargoController.create)
 router.get('/cargos' , CargoController.getAll)
 router.get('/cargos/:id' , ValidarId, CargoController.getbyId)
-router.put('/cargos/:id' , CargoController.update)
-router.put('/cargos/:id' , CargoController.remove)
+router.put('/cargos/:id' , ValidarId,CargoController.update)
+router.put('/cargos/:id' , ValidarId,CargoController.remove)
 
 
 // Funcionarios
