@@ -22,7 +22,7 @@ async function getAll(req, res) {
 }
 
  async function getbyId(req, res) {
-    const cargo = Cargo.findById(req.params.id)
+    const cargo = await Cargo.findById(req.params.id)
     if(cargo){
         res.json(cargo)
     } else {
@@ -52,6 +52,8 @@ async function remove(req, res) {
         res.status(404).json({ mensagem: "Cargo não encontrato!" })
     }
 }
+
+
 
 
 
