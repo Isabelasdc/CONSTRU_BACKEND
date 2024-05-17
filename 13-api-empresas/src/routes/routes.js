@@ -10,6 +10,7 @@ const DepartamentoController = require('../controllers/DepartamentoController')
 // validadores
 const {ValidarId} = require('../validators/idValidator')
 const {cargoValidador} = require('../validators/CargoValidator')
+const { funcionarioValidador } = require('../validators/FuncionarioValidator')
 
 // cargos
 router.post('/cargos',cargoValidador,CargoController.create)
@@ -20,18 +21,18 @@ router.delete('/cargos/:id' , ValidarId,CargoController.remove)
 
 
 // Funcionarios
-router.post('/funcionarios', funcionarioController.create)
+router.post('/funcionarios',funcionarioValidador,funcionarioController.create)
 router.get('/funcionarios', funcionarioController.getAll)
-router.get('/funcionarios/:id', funcionarioController.getById)
+router.get('/funcionarios/:id', funcionarioController.getbyId)
 router.put('/funcionarios/:id', funcionarioController.update)
 router.delete('/funcionarios/:id', funcionarioController.remove)
 
 // Departamento 
 router.post('/departamentos', DepartamentoController.create)
 router.get('/departamentos', DepartamentoController.getAll)
-router.get('/departamentos/:id', DepartamentoController.getbyId)
-router.put('/departamentos/:id', DepartamentoController.update)
-router.delete('/departamentos/:id', DepartamentoController.remove)
+router.get('/departamentos/:id', ValidarId,DepartamentoController.getbyId)
+router.put('/departamentos/:id',ValidarId,DepartamentoController.update)
+router.delete('/departamentos/:id', ValidarId,DepartamentoController.remove)
 
 
 module.exports = router
