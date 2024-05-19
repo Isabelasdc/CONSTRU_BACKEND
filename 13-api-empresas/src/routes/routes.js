@@ -6,11 +6,16 @@ const router =  express.Router()
 const CargoController = require ('../controllers/CargoController')
 const funcionarioController = require('../controllers/FuncionarioController')
 const DepartamentoController = require('../controllers/DepartamentoController')
+const TarefaController = require('../controllers/TarefaController')
+const ProjetoController = require('../controllers/ProjetoController')
 
 // validadores
 const {ValidarId} = require('../validators/idValidator')
 const {cargoValidador} = require('../validators/CargoValidator')
 const { funcionarioValidador } = require('../validators/FuncionarioValidator')
+const { departamentoValidador } = require('../validators/DepartamentoValidator')
+const { tarefaValidador } = require('../validators/TarefaValidator')
+const { projetoValidador } = require('../validators/ProjetoValidator')
 
 // cargos
 router.post('/cargos',cargoValidador,CargoController.create)
@@ -28,11 +33,25 @@ router.put('/funcionarios/:id', funcionarioController.update)
 router.delete('/funcionarios/:id', funcionarioController.remove)
 
 // Departamento 
-router.post('/departamentos', DepartamentoController.create)
+router.post('/departamentos',departamentoValidador ,DepartamentoController.create)
 router.get('/departamentos', DepartamentoController.getAll)
 router.get('/departamentos/:id', ValidarId,DepartamentoController.getbyId)
 router.put('/departamentos/:id',ValidarId,DepartamentoController.update)
 router.delete('/departamentos/:id', ValidarId,DepartamentoController.remove)
+
+// tarefas 
+router.post('/tarefas', tarefaValidador, TarefaController.create)
+router.get('/tarefas', TarefaController.getAll)
+router.get('/tarefas/:id', ValidarId,TarefaController.getbyId)
+router.put('/tarefas/:id',ValidarId,TarefaController.update)
+router.delete('/tarefas/:id', ValidarId,TarefaController.remove)
+
+// projeto 
+router.post('/projetos',projetoValidador, ProjetoController.create)
+router.get('/projetos', ProjetoController.getAll)
+router.get('/projetos/:id', ValidarId,ProjetoController.getbyId)
+router.put('/projetos/:id',ValidarId,ProjetoController.update)
+router.delete('/projetos/:id', ValidarId,ProjetoController.remove)
 
 
 module.exports = router
