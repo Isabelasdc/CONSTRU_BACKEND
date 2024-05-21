@@ -16,6 +16,7 @@ const { funcionarioValidador } = require('../validators/FuncionarioValidator')
 const { departamentoValidador } = require('../validators/DepartamentoValidator')
 const { tarefaValidador } = require('../validators/TarefaValidator')
 const { projetoValidador } = require('../validators/ProjetoValidator')
+const {checarToken} = require('../validators/AutenticacaoValidator')
 
 // cargos
 router.post('/cargos',cargoValidador,CargoController.create)
