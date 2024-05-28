@@ -19,7 +19,7 @@ const tarefaSchema = yup.object().shape({
 })
 
 function tarefaValidador(req, res, next){
-    tarefaSchemaSchema
+    tarefaSchema
     .validate(req.body, {abortEarly: false})
     .then(() => next())
     .catch(err => {
