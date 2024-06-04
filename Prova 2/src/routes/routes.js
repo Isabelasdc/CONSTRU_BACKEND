@@ -8,6 +8,7 @@ const ClienteController = require('../controllers/ClienteController')
 const FuncionarioController = require('../controllers/FuncionarioController')
 const PagamentoController = require('../controllers/PagamentoController')
 const ServicoController = require('../controllers/ServicoController')
+const Agendamento2Controller = require('../controllers/AgendamentoController')
 
 // validadores
 const {ValidarId} = require('../validators/idValidator')
@@ -18,8 +19,9 @@ const {pagamentoValidador} = require('../validators/PagamentoValidator')
 const {servicoValidador} = require('../validators/ServicoValidator')
 const {checarToken} = require('../validators/AutenticacaoValidator')
 
+
 // agendamento
-router.post('/agendamento',agendamentoValidador,AgendamentoController.create)
+router.post('/agendamento', AgendamentoController.create)
 router.get('/agendamento' , AgendamentoController.getAll)
 router.get('/agendamento/:id' , ValidarId, AgendamentoController.getbyId)
 router.put('/agendamento/:id' , ValidarId,AgendamentoController.update)

@@ -2,7 +2,6 @@ const mongoose = require('mongoose')
 
 const schema = new mongoose.Schema(
     {
-
         cliente: {
             type: mongoose.SchemaTypes.ObjectId,
             ref: 'cliente',
@@ -17,6 +16,11 @@ const schema = new mongoose.Schema(
             type: mongoose.SchemaTypes.ObjectId,
             ref: 'servico', 
             required: false
+        },
+    
+        email:{
+            type:String,
+            required: true
         },
         data: {
             type: Date,
@@ -39,6 +43,7 @@ const schema = new mongoose.Schema(
             ref: 'pagamento',
             required: false
         },
+    
     },
     {
         timestamps: true

@@ -1,27 +1,18 @@
 const Agendamento = require('../models/Agendamento')
-const nodemailer = require('nodemailer');
-const Cliente = require('../models/Cliente')
-
-
+const nodemailer = require('nodemailer')
 
 async function create(req, res) {
+    const { email, agendamento, funcionario, servico, data, hora, observacoes, statusAgendamento, pagamento } = req.body
+
+
     try {
-        const { email } = req.body;
+        
+        const novoagendamento = new Agendamento({  email, agendamento, funcionario, servico, data, hora, observacoes, statusAgendamento,pagamento })
+        const agendamentoSalvo = await novoagendamento.save()
 
-        // Busca o cliente com o email fornecido
-        const cliente = await Cliente.findOne({ email });
-
-        if (!cliente) {
-            return res.status(404).json({ mensagem: "Cliente não encontrado!" });
-        }
-
-        // Cria um novo agendamento
-        const agendamento = new Agendamento(req.body);
-        const agendamentoCriado = await agendamento.save();
-
-        // Configuração do transporter
+        
         const transporter = nodemailer.createTransport({
-            host: "smtp-mail.msn.com",
+            host: "smtp-mail.outlook.com",
             port: 587,
             auth: {
                 user: process.env.EMAIL_USER,
@@ -29,45 +20,44 @@ async function create(req, res) {
             }
         });
 
-        // Envia o email para o cliente
+        
         await transporter.sendMail({
             from: process.env.EMAIL_USER,
-            to: email,
-            subject: "Bem-vindo",
-            text: "Olá, seu agendamento foi realizado com sucesso"
+            to: email, 
+            subject: "Agendado com sucesso!",
+            text: "Olá, agradecemos a sua preferência em nossos serviços, seu horário foi marcado e te aguardamos ansiosamente."
         });
 
-        res.status(201).json(agendamentoCriado);
-    } catch (error) {
-        console.error("Erro ao criar agendamento: ", error);
-        res.status(400).json({
-            mensagem: "Erro ao criar agendamento!",
-            erro: error.message
-        });
+        
+        res.status(201).json({ mensagem: "Agendado com sucesso!", agendado: agendamentoSalvo })
+    } 
+    
+    catch (error) {
+        console.error('Erro ao enviar email!', error)
+        res.status(500).json({ mensagem: "Erro ao cadastrar usuário e enviar email de agendamento" })
     }
 }
-
 
 async function getAll(req, res) {
     res.json(await Agendamento.find())
 }
 
-async function getbyId(req, res) {
+ async function getbyId(req, res) {
     const agendamento = await Agendamento.findById(req.params.id)
-    if (agendamento) {
+    if(agendamento){
         res.json(agendamento)
     } else {
-        res.status(404).json({ mensagem: "Agendamento não encontrado!" })
+        res.status(404).json({mensagem: "agendamento não encontrado!"})
     }
+    
+ }
 
-}
-
-async function update(req, res) {
+    async function update(req, res) {
     const agendamentoAtualizado = await Agendamento.findByIdAndUpdate(req.params.id, req.body)
-    if (agendamentoAtualizado) {
-        res.json(agendamentoAtualizado)
+   if(agendamentoAtualizado) {
+    res.json(agendamentoAtualizado)
     } else {
-        res.status(404).json({ mensagem: "Agendamento não encontrado" })
+        res.status(404).json({mensagem: "agendamento não encontrado"})
     }
 
 }
@@ -76,13 +66,16 @@ async function remove(req, res) {
     const agendamentoExcluido = await Agendamento.findByIdAndDelete(req.params.id)
     if (agendamentoExcluido) {
         res.json({
-            mensagem: "Agendamento excluido com sucesso!",
+            mensagem: "agendamento excluido com sucesso!",
             agendamentoExcluido
         })
     } else {
-        res.status(404).json({ mensagem: "Agendamento não encontrato!" })
+        res.status(404).json({ mensagem: "agendamento não encontrato!" })
     }
 }
+
+
+
 
 
 
