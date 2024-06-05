@@ -7,7 +7,7 @@ async function create(req, res) {
 
     try {
         
-        const novoagendamento = new Agendamento({  email, agendamento, funcionario, servico, data, hora, observacoes, statusAgendamento,pagamento })
+        const novoagendamento = new Agendamento({  email, agendamento, funcionario, servico, data, hora, observacoes, statusAgendamento, pagamento })
         const agendamentoSalvo = await novoagendamento.save()
 
         
