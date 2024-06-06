@@ -39,11 +39,11 @@ async function create(req, res) {
 }
 
 async function getAll(req, res) {
-    res.json(await Agendamento.find())
+    res.json(await Agendamento.find().populate("cliente"))
 }
 
  async function getbyId(req, res) {
-    const agendamento = await Agendamento.findById(req.params.id)
+    const agendamento = await Agendamento.findById(req.params.id).populate("funcionario")
     if(agendamento){
         res.json(agendamento)
     } else {

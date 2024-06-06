@@ -7,10 +7,6 @@ const Schema = yup.object().shape({
     cpf: yup
     .string('campo precisar ser um texto')
     .required ('campo obrigatório'),
-    email: yup 
-    .string('campo precisar ser um texto')
-    .email('E-mail inválido')
-    .required ('campo obrigatório'),
     telefone: yup
     .string('campo precisar ser um texto')
     .required ('campo obrigatório'), 

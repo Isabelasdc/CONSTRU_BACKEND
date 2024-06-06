@@ -1,0 +1,764 @@
+{
+	"info": {
+		"_postman_id": "5fa37906-8313-4b5c-afd8-012f932a11de",
+		"name": "Salão",
+		"description": "Api para gerenciar agendamento do Salão",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33176101"
+	},
+	"item": [
+		{
+			"name": "Autenticacao",
+			"item": [
+				{
+					"name": "Registrar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\" : \"isabela2\",\r\n    \"email\" :\"isabela2@test.com\",\r\n    \"senha\" :\"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/auth/registro",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"auth",
+								"registro"
+							]
+						},
+						"description": "Funcionalidade para registrar usuario"
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"isabela2@test.com\",\r\n    \"senha\": \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/auth/login",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "Realiza o login com email e senha criados"
+					},
+					"response": []
+				}
+			],
+			"description": "**Trata-se de um processo de verificação de uma identidade, verifica se os dados informados estão validos, no caso é registrado com nome, email e senha, após isso é criado o usuário, realiza o login que gerar o token, somente com esse token é possível rodar toda aplicação.**"
+		},
+		{
+			"name": "Cliente",
+			"item": [
+				{
+					"name": "Buscar Cliente",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/cliente",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"cliente"
+							]
+						},
+						"description": "Busca todos os clientes cadastrados."
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Cliente ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/cliente/:id",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"cliente",
+								":id"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": null,
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "665ce982f5c54f8300bf25de"
+								}
+							]
+						},
+						"description": "Busca todos os clientes cadastrados por ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Cliente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Maria Silva da Silva\",\r\n    \"cpf\": \"00987643215\",\r\n    \"telefone\": \"987654321\",\r\n    \"email\": \"maria.silva2@example.com\",\r\n    \"endereco\": \"Rua das Flores, 123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/cliente/:id",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"cliente",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "665ce982f5c54f8300bf25de"
+								}
+							]
+						},
+						"description": "Atualiza os dados do cliente selecionado."
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir Cliente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/cliente/:id",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"cliente",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "665ce982f5c54f8300bf25de"
+								}
+							]
+						},
+						"description": "Exclui o cliente cadastrado que foi selecionado."
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastrar Cliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Maria Silva da Silva\",\r\n    \"cpf\": \"00987643215\",\r\n    \"telefone\": \"987654321\",\r\n    \"endereco\": {\r\n        \"cep\": \"12345678\",\r\n        \"logradouro\": \"Rua Exemplo\",\r\n        \"complemento\": \"Apto 101\",\r\n        \"bairro\": \"Centro\",\r\n        \"localidade\": \"Cidade Exemplo\",\r\n        \"uf\": \"SP\",\r\n        \"numero\": \"100\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/cliente",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"cliente"
+							]
+						},
+						"description": "Cadastra os dados do cliente."
+					},
+					"response": []
+				}
+			],
+			"description": "Pasta com os dados dos Clientes."
+		},
+		{
+			"name": "Funcionario",
+			"item": [
+				{
+					"name": "Buscar Funcionario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"description": "Busca todos os funcionários cadastrados."
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Funcionario ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/agendamento/:id",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"agendamento",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "Busca todos os funcionários cadastrados por ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastrar Funcionario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"João Pereira\",\r\n    \"funcao\": \"Cabeleireiro\",\r\n    \"salario\": 1460.00,\r\n    \"dataContratacao\": \"2023-01-01\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/funcionario",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"funcionario"
+							]
+						},
+						"description": "Cadastra os dados do funcionario."
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Funcionario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/agendamento/:id",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"agendamento",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "Atualiza os dados do funcionario selecionado."
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir Funcionario",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/agendamento/:id",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"agendamento",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "Exclui o cliente cadastrado que foi selecionado."
+					},
+					"response": []
+				}
+			],
+			"description": "Pasta com os dados dos Funcionarios."
+		},
+		{
+			"name": "Agendamento",
+			"item": [
+				{
+					"name": "Buscar Agendamento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/agendamento",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"agendamento"
+							]
+						},
+						"description": "Busca todos os agendamentos cadastrados."
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Agendamento ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/agendamento/:id",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"agendamento",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "Busca todos os agendamentos cadastrados por ID."
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Agendamento",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/agendamento/:id",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"agendamento",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "Atualiza os dados do agendamento selecionado."
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastrar Agendamento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cliente\": \"665e4c456a616c032387a778\",\r\n    \"funcionario\": \"665cefa95fa0bdff2037204b\",\r\n    \"servico\": \"665cf1275be427565694ab70\",\r\n    \"data\": \"2022-05-01\",\r\n    \"hora\": \"10:30\",\r\n    \"email\" : \"renatacarvalhotop@gmail.com\",\r\n    \"statusAgendamento\": \"remarcado\",\r\n    \"observacoes\": \"Nenhuma\",\r\n    \"pagamento\" : \"665fad76b0e42390c7468c6d\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/agendamento",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"agendamento"
+							]
+						},
+						"description": "Cadastra os dados do agendamento."
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir Agendamento",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/agendamento/:id",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"agendamento",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "Exclui o agendamento cadastrado que foi selecionado."
+					},
+					"response": []
+				}
+			],
+			"description": "Pasta com os dados dos Agendamentos."
+		},
+		{
+			"name": "Servico",
+			"item": [
+				{
+					"name": "Buscar Servico",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/servico",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"servico"
+							]
+						},
+						"description": "Busca todos os agendamentos cadastrados."
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Servico ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/servico/:id",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"servico",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "Busca todos os agendamentos cadastrados por ID."
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastrar Servico",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Corte de Cabelo\",\r\n    \"descricao\": \"Corte de cabelo masculino\",\r\n    \"preco\": 50.00,\r\n    \"duracao\": \"30 minutos\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/servico",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"servico"
+							]
+						},
+						"description": "Cadastra os dados do serviço."
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Servico",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/servico/:id",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"servico",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "Atualiza os dados do serviço selecionado."
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir Servico",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/servico/:id",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"servico",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "Exclui o serviço cadastrado que foi selecionado."
+					},
+					"response": []
+				}
+			],
+			"description": "Pasta com os dados dos Serviços."
+		},
+		{
+			"name": "Pagamento",
+			"item": [
+				{
+					"name": "Buscar Pagamento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/pagamento",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"pagamento"
+							]
+						},
+						"description": "Busca todos os pagamentos cadastrados."
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastrar Pagamento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"agendamento\": \"665cf2195be427565694ab74\",\r\n    \"valor\": 100.0,\r\n    \"dataPagamento\": \"2023-06-01\",\r\n    \"metodoPagamento\": \"cartão de crédito\",\r\n    \"statusPagamento\": \"aprovado\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/pagamento",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"pagamento"
+							]
+						},
+						"description": "Cadastra os dados do pagamento."
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Pagamento ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/pagamento/:id",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"pagamento",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "Busca todos os pagamentos cadastrados por ID."
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Pagamento",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/pagamento/:id",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"pagamento",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "Atualiza os dados do pagamento selecionado."
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir Pagamento",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/pagamento/:id",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"pagamento",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "Exclui o pagamento cadastrado que foi selecionado."
+					},
+					"response": []
+				}
+			],
+			"description": "Pasta com os dados dos Pagamentos."
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImlzYWJlbGEyQHRlc3QuY29tIiwiaWF0IjoxNzE3NTQ2MzEyLCJleHAiOjE3MTc1NDk5MTJ9.xrE8hThVL7IPSMbQ9HumrF_25Q7-FCSePoxZXBJCmI0",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "apiUrl",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}
